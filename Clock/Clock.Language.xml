@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Language file. Edit in a Unicode text editor only. Make a backup copy first. -->
+<language>
+	<item>
+		<key>Hour. It's now</key>
+		<content language="en"></content>
+		<content language="es">Hora.  Ahora son</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>Half hour. It's now</key>
+		<content language="en"></content>
+		<content language="es">Media Hora. Ahora son</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>Quarter Hour. It's now</key>
+		<content language="en"></content>
+		<content language="es">Cuarto de Hora.  Ahora son</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>Type your reminder here.</key>
+		<content language="en">Type your reminder here.</content>
+		<content language="cz">Sem zadejte svou upomínku.</content>
+		<content language="es">Escriba su recordatorio aquí</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>Clock</key>
+		<content language="en">Clock</content>
+		<content language="cz">Hodiny</content>
+		<content language="es">Reloj</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>Reminder at</key>
+		<content language="en">Reminder at</content>
+		<content language="cz">Upomínka na</content>
+		<content language="es">Recordatorio a las</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>frmMain.Text</key>
+		<content language="en">Clock</content>
+		<content language="cz">Hodiny</content>
+		<content language="es">Reloj</content>
+		<content language="xx">XX</content>
+		<explanation/>
+	</item>
+	<item>
+		<key>frmMain.mnuFileHide.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Hide</content>
+		<content language="es">Esconder</content>
+		<content language="cz">Skrýt</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuChimes.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Chimes</content>
+		<content language="es">Campanazos</content>
+		<content language="cz">Odbíjení</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuChimesNone.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;No chimes</content>
+		<content language="es"></content>
+		<content language="cz">Bez odbíjení</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuChimesHour.Text</key>
+		<explanation>String</explanation>
+		<content language="en">Every &amp;Hour</content>
+		<content language="cz">Každou hodinu</content>
+		<content language="es">Cada &amp;hora</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuChimesHalf.Text</key>
+		<explanation>String</explanation>
+		<content language="en">Every &amp;Thirty Minutes</content>
+		<content language="cz">Každých 30 minut</content>
+		<content language="es">Cada 30 minutos</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuChimesQuarter.Text</key>
+		<explanation>String</explanation>
+		<content language="en">Every &amp;Fifteen Minutes</content>
+		<content language="cz">Každých 15 minut</content>
+		<content language="es">Cada 15 minutos</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuReminders.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Reminders</content>
+		<content language="es">Recordatorios</content>
+		<content language="cz">Upomínky</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuRemindersAddreminder.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Add Reminder</content>
+		<content language="es">Añadir Recordatorio</content>
+		<content language="cz">Přidat upomínku</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuReminderList.Text</key>
+		<explanation>String</explanation>
+		<content language="en"></content>
+		<content language="es">Nueva Lista de Recordatorios</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuOptions.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Options</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuOptions24hour.Text</key>
+		<explanation>String</explanation>
+		<content language="en">24-&amp;hour clock</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuOptionsShowseconds.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Show seconds</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuHelp.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Help</content>
+		<content language="es">Ayuda</content>
+		<content language="cz">Nápověda</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuHelpManual.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Manual</content>
+		<content language="es">Manual</content>
+		<content language="cz">Příručka</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmMain.mnuHelpAbout.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;About</content>
+		<content language="es">Sobre</content>
+		<content language="cz">O programu</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmSchedule.Text</key>
+		<content language="en">Schedule Reminder</content>
+		<content language="es">Programar Recordatorio</content>
+		<content language="cz">Plánovač upomínek</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmSchedule.btnDeleteReminder.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Delete this reminder</content>
+		<content language="es">Borrar éste Recordatorio</content>
+		<content language="cz">Smazat tuto upomínku</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmSchedule.lblReminder.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Reminder</content>
+		<content language="es">Recordatorio</content>
+		<content language="cz">Upomínky</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmSchedule.lblTime.Text</key>
+		<explanation>String</explanation>
+		<content language="en">&amp;Time</content>
+		<content language="es">&amp;Hora </content>
+		<content language="cz">Č&amp;as</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>Type your reminder here.</key>
+		<explanation>String</explanation>
+		<content language="en">Type your reminder here.</content>
+		<content language="cz">Sem zadejte svou upomínku.</content>
+		<content language="xx">XX</content>
+	</item>
+	<item>
+		<key>frmReminder.Text</key>
+		<content language="en">Clock Reminder</content>
+		<explanation>Title of reminder window.</explanation>
+	</item>
+</language>

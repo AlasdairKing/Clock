@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Installer for Clock 2
+	
+	* This is a perMachine installer.
+	
+	2.0.1	Changed Manufacturer to "Accessible and WebbIE"
+-->
+<?define ProductName="Clock 2" ?>
+<?define Manufacturer="Accessible and WebbIE" ?>
+<?define UpgradeCode="{7D715EDF-0E5A-4587-AD00-2C901F50B534}" ?>
+<?define ProductVersion="2.0.1" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:swid="http://schemas.microsoft.com/wix/TagExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+    <Product Id="*" Language="1033" Manufacturer="$(var.Manufacturer)" Name="$(var.ProductName)" UpgradeCode="$(var.UpgradeCode)" Version="$(var.ProductVersion)">
+        <Package Id="*" Compressed="yes" InstallerVersion="301" InstallScope="perMachine" InstallPrivileges="elevated" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="MANUFACTURERDIR" Name="$(var.Manufacturer)">			
+					<Directory Id="INSTALLDIR" Name="$(var.ProductName)">
+						<Component Feature="ProductFeature" Id="Common.Language.xml">
+							<File Id="Common.Language.xml" Source="SourceDir\Common.Language.xml" KeyPath="yes" />
+						</Component>
+						<Component Feature="ProductFeature" Id="EXEName.exe">
+							<CreateFolder />
+							<File Id="EXEName.exe" Source="SourceDir\Clock.exe" KeyPath="yes">
+								<Shortcut Id='EXEName.exe' Name='$(var.ProductName)' Directory='ManufacturerGroup' 
+								Icon='EXEName.exe' WorkingDirectory="INSTALLDIR" Advertise="yes">
+									<Icon Id='EXEName.exe' SourceFile='SourceDir\Clock.ico' />
+								</Shortcut>
+								<!-- Uncomment for desktop shortcut -->
+								<!-- <Shortcut Id='DesktopShortcut' Name='$(var.ProductName)' Directory='DesktopFolder' Icon='EXEName.exe' Advertise="yes" /> -->
+								<netfx:NativeImage Id="ngen_MyApplication.exe" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLDIR" />
+							</File>
+							<RemoveFile Id='Cleanup' On='uninstall' Name='*.*'/>
+							<RemoveFolder Id="CleanupFolder" On="uninstall" />
+
+							<!-- Give app a nice name. http://msdn.microsoft.com/en-us/library/ee872121(v=vs.85).aspx -->
+							<RegistryValue Root="HKLM" Key="Software\Classes\Applications\Clock.exe" Type="string" Value="$(var.ProductName)" />
+							<util:EventSource Log="Application" Name="$(var.ProductName)" EventMessageFile="[NETFRAMEWORK40INSTALLROOTDIR]EventLogMessages.dll"/>
+						</Component>
+						<Component Feature="ProductFeature" Id="PDFReader3.Help_en.rtf">
+							<File Id="Clock.Help_en.rtf" Source="SourceDir\Clock.Help-en.rtf" KeyPath="yes" />
+						</Component>
+						<Component Feature="ProductFeature" Id="Clock.Language.xml">
+							<File Id="Clock.Language.xml" Source="SourceDir\Clock.Language.xml" KeyPath="yes" />
+						</Component>
+					</Directory>
+					<Directory Id='ProgramMenuFolder'>
+						<Directory Id='ManufacturerGroup' Name='$(var.Manufacturer)'>
+							<Component Id="ProgramGroup" Guid="*" Feature="ProductFeature"> 
+								<RemoveFolder Id="ProgramGroup" On="uninstall" />
+								<RegistryValue Root="HKCU" Key="SOFTWARE\$(var.ProductName)" Type="string" Value="Installed" />
+							</Component>
+						</Directory>
+					</Directory>
+				</Directory>
+			</Directory>
+			<Directory Id='WindowsFolder' />
+			<Directory Id='ProfilesFolder' />
+			<Directory Id="CommonAppDataFolder" />
+			<Directory Id='StartMenuFolder' />
+			<Directory Id='DesktopFolder' />
+        </Directory>
+        <Feature Id="ProductFeature" Level="1" Title="$(var.ProductName)" ConfigurableDirectory="INSTALLDIR" />
+        <swid:Tag Regid="regid.2004-04.ui.org.webbie" Licensed="no" />
+		<Media Id="1" Cabinet="product.cab" EmbedCab="yes" CompressionLevel="none" />
+		<Property Id='WIXUI_INSTALLDIR' Value='INSTALLDIR' />
+		<!-- <UIRef Id='WixUI_Minimal' />
+		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+		<WixVariable Id="WixUIBannerBmp" Value="bannrbmp.bmp" />
+		<WixVariable Id="WixUIDialogBmp" Value="dlgbmp.bmp" /> -->
+		<CustomAction Id="SAVETARGETDIR" Property="ARPINSTALLLOCATION" Value="[INSTALLDIR]" /> 
+		<InstallExecuteSequence>
+			<Custom Action="SAVETARGETDIR" After="InstallValidate" />
+		</InstallExecuteSequence>
+		<Property Id="MSIFASTINSTALL" Value="7" />
+		<Property Id='ARPPRODUCTICON' Value='EXEName.exe' />
+		<Property Id='ARPHELPLINK' Value='http://www.webbie.org.uk' />		
+		<!-- Upgrade self and prevent downgrade -->
+		<InstallExecuteSequence>
+			<!-- Uninstall old version BEFORE installing any of our own files. Less efficient but safer. -->
+			<RemoveExistingProducts After="InstallValidate" />
+			<!-- Run application -->
+			<Custom Action="LaunchApplication" After="InstallFinalize">NOT Installed AND SUPPRESS_START&lt;&gt;"1"</Custom>
+		</InstallExecuteSequence>
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion Minimum="0.0.1" Maximum="$(var.ProductVersion)" Property="UPGRADE_SELF" IncludeMinimum="yes" IncludeMaximum="no" IgnoreRemoveFailure="yes" MigrateFeatures="yes" ExcludeLanguages="yes" />
+			<UpgradeVersion Minimum="$(var.ProductVersion)" OnlyDetect="yes" Property="NEWERVERSIONDETECTED" />		
+		</Upgrade>		
+		<Condition Message="A newer version of [ProductName] is already installed.  You must uninstall that package before this one can be installed.">
+			NOT NEWERVERSIONDETECTED
+		</Condition> 	
+		<Property Id="WixShellExecTarget" Value="[#EXEName.exe]" />
+		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+    </Product>
+</Wix>

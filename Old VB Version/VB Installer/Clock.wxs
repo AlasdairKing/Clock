@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--	
+	Installer for Clock 
+-->
+<?define ProductName="Clock" ?>
+<?define Manufacturer="Alasdair King" ?>
+<?define UpgradeCode="{B29A3067-91BA-4771-9560-AC2E79FC6335}" ?>
+<?define ProductVersion="1.2.1" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Language="1033" Manufacturer="$(var.Manufacturer)" Name="$(var.ProductName)" UpgradeCode="$(var.UpgradeCode)" Version="$(var.ProductVersion)">
+        <Package Id="*" Compressed="yes" InstallerVersion="301" InstallScope="perMachine" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="INSTALLDIR" Name="$(var.ProductName)">
+					<Component Feature="ProductFeature" Id="Common.Language.xml" Guid="*">
+						<File Id="Common.Language.xml" Source="SourceDir\Common.Language.xml" KeyPath="yes" />
+					</Component>
+					<Component Feature="ProductFeature" Id="Clock.exe">
+						<File Id="Clock.exe" Source="SourceDir\Clock.exe" KeyPath="yes">
+							<Shortcut Id='EXEName.exe' Name='$(var.ProductName)' Directory='ProgramMenuFolder' 
+							Icon='EXEName.exe' WorkingDirectory="INSTALLDIR">
+								<Icon Id='EXEName.exe' SourceFile='SourceDir\Clock.ico' />
+							</Shortcut>
+							<Shortcut Id='DesktopShortcut' Name='$(var.ProductName)' Directory='DesktopFolder' Icon='EXEName.exe' />
+						</File>
+						<RemoveFile Id='Cleanup' On='uninstall' Name='*.*'/>
+						<RemoveFolder Id="CleanupFolder" On="uninstall" />
+					</Component>
+					<Component Feature="ProductFeature" Id="Clock.exe.config">
+						<File Id="Clock.exe.config" Source="SourceDir\Clock.exe.config" KeyPath="yes" />
+					</Component>
+					<Component Feature="ProductFeature" Id="Clock.Help_en.rtf">
+						<File Id="Clock.Help_en.rtf" Source="SourceDir\Clock.Help-en.rtf" KeyPath="yes" />
+					</Component>
+					<Component Feature="ProductFeature" Id="Clock.ico">
+						<File Id="Clock.ico" Source="SourceDir\Clock.ico" KeyPath="yes" />
+					</Component>
+					<Component Feature="ProductFeature" Id="Clock.Language.xml">
+						<File Id="Clock.Language.xml" Source="SourceDir\Clock.Language.xml" KeyPath="yes" />
+					</Component>
+				</Directory>
+				<Directory Id='ProgramMenuFolder'>
+					<Component Id="ProgramGroup" Guid="*" Feature="ProductFeature"> 
+						<RegistryValue Root="HKCU" Key="SOFTWARE\$(var.ProductName)" Type="string" Value="Installed" />
+					</Component>
+				</Directory>
+			</Directory>
+			<Directory Id='WindowsFolder' />
+			<Directory Id='ProfilesFolder' />
+			<Directory Id="CommonAppDataFolder" />
+			<Directory Id='StartMenuFolder' />
+			<Directory Id='DesktopFolder' />			
+        </Directory>
+        <Feature Id="ProductFeature" Level="1" Title="$(var.ProductName)" ConfigurableDirectory="INSTALLDIR" />
+        <Media Id="1" Cabinet="product.cab" EmbedCab="yes" CompressionLevel="none" />
+		<Property Id='WIXUI_INSTALLDIR' Value='INSTALLDIR' />
+		<!-- <UIRef Id='WixUI_Minimal' />
+		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+		<WixVariable Id="WixUIBannerBmp" Value="bannrbmp.bmp" />
+		<WixVariable Id="WixUIDialogBmp" Value="dlgbmp.bmp" /> -->
+		<CustomAction Id="SAVETARGETDIR" Property="ARPINSTALLLOCATION" Value="[INSTALLDIR]" /> 
+		<InstallExecuteSequence>
+			<Custom Action="SAVETARGETDIR" After="InstallValidate" />
+		</InstallExecuteSequence>
+		<Property Id="MSIFASTINSTALL" Value="1" />
+		<Property Id='ARPPRODUCTICON' Value='EXEName.exe' />
+		<!-- Upgrade self and prevent downgrade -->
+		<InstallExecuteSequence>
+			<!-- Uninstall old version BEFORE installing any of our own files. Less efficient but safer. -->
+			<RemoveExistingProducts After="InstallValidate" />
+		</InstallExecuteSequence>
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion Minimum="0.0.1" Maximum="$(var.ProductVersion)" Property="UPGRADE_SELF" IncludeMinimum="yes" IncludeMaximum="no" IgnoreRemoveFailure="yes" MigrateFeatures="yes" ExcludeLanguages="yes" />
+			<UpgradeVersion Minimum="$(var.ProductVersion)" OnlyDetect="yes" Property="NEWERVERSIONDETECTED" />		
+		</Upgrade>		
+		<Condition Message="A newer version of [ProductName] is already installed.  You must uninstall that package before this one can be installed.">
+			NOT NEWERVERSIONDETECTED
+		</Condition> 	
+    </Product>
+</Wix>
